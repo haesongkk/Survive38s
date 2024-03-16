@@ -104,6 +104,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>Header.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +121,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>Header.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +133,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Render.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Survive38s.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Header.h" />
+    <ClInclude Include="Key.h" />
+    <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Render.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Title.h" />
+    <ClInclude Include="Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

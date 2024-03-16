@@ -1,22 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{97b50f49-d958-46e6-a91c-d8214c8ab844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Key">
+      <UniqueIdentifier>{dafef17a-d522-4762-8187-9eecb9554bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{2b6dbc96-0b24-4022-97c5-e491d86f1a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{3a1e0adc-13af-4c0e-a749-bd430caf6ef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{71c36d5e-324e-4361-8b15-61a8094ebf4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{ae938b1a-149a-4974-af11-413fab7a890a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{144d1eea-2c5a-4900-b26a-7cdb712ef5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obstacle">
+      <UniqueIdentifier>{69665829-d63d-4853-9827-19fae894cc21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{305b74f6-adf0-41a2-9240-0e5e33699e4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{441ad62f-32fc-4f92-b493-e9cc15228921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{65a54d3f-fbe4-4faa-bcbb-c88395ae8a28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Survive38s.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Key</Filter>
+    </ClCompile>
+    <ClCompile Include="Survive38s.cpp" />
+    <ClCompile Include="Time.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Key</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h" />
+    <ClInclude Include="Time.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h" />
   </ItemGroup>
 </Project>
