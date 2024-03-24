@@ -14,7 +14,7 @@ void CollisionCheck(int i)
         {
             if (m_obs[i].curPos.X + k == m_pos.X && m_obs[i].curPos.Y == m_pos.Y)
             {
-                m_hpCount--;
+                lifeCount--;
                 m_isCrash = true;
             }
         }

@@ -8,7 +8,7 @@ void updateUI();
 
 void Game();
 
-extern int m_hpCount;
+extern int lifeCount;
 extern const double clearTime;
 
 extern bool m_isClear;

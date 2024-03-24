@@ -2,4 +2,4 @@
 
 void InitTime();
 void UpdateTime();
-ULONGLONG GetDeltaTime();
+double GetDeltaTime();

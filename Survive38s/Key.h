@@ -11,5 +11,5 @@ enum KeyState
 };
 
 void InitKey();
-void UpdateInput();
+void UpdateKey();
 bool GetKey(KeyID, KeyState);

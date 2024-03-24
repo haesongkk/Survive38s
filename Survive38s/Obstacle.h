@@ -16,6 +16,7 @@ struct Obstacle
     int direction; // 이동방향
     const char* scale = "  ";
 
+    wstring shape = L"  ";
     Vector2 pos;
     Vector2 move;
 

@@ -2,24 +2,24 @@
 
 #include "Time.h"
 
-ULONGLONG m_previousTime = 0;
-ULONGLONG m_currentTime = 0;
-ULONGLONG m_deltaTime = 0;
+ULONGLONG previousTime = 0;
+ULONGLONG currentTime = 0;
+ULONGLONG deltaTime = 0;
 
 void InitTime()
 {
-    m_currentTime = m_previousTime = GetTickCount64();
-    m_deltaTime = 0;
+    currentTime = previousTime = GetTickCount64();
+    deltaTime = 0;
 }
 
 void UpdateTime()
 {
-    m_previousTime = m_currentTime;
-    m_currentTime = GetTickCount64();
-    m_deltaTime = m_currentTime - m_previousTime;
+    previousTime = currentTime;
+    currentTime = GetTickCount64();
+    deltaTime = currentTime - previousTime;
 }
 
-ULONGLONG GetDeltaTime()
+double GetDeltaTime()
 {
-    return m_deltaTime;
+    return deltaTime * 0.001;
 }

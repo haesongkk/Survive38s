@@ -1,39 +1,50 @@
 #include "Header.h"
 #include "Key.h"
 
-bool m_key[KEYID_END][KETSTATE_END] = {};
-int m_keyID[KEYID_END] = { VK_LEFT, VK_RIGHT, VK_SPACE };
+const int keyID[KEYID_END] = { 
+    VK_LEFT, 
+    VK_RIGHT, 
+    VK_SPACE };
 
-void UpdateInput()
+bool key[KEYID_END][KETSTATE_END] = {};
+
+void InitKey()
+{
+    for (int i = 0; i < KEYID_END; i++)
+        for (int j = 0; j < KETSTATE_END; j++)
+            key[i][j] = false;
+}
+
+void UpdateKey()
 {
     bool prePush[KEYID_END] = {};
 
     for (int i = 0; i < KEYID_END; i++)
     {
         // 직전 키 상태 보관
-        prePush[i] = m_key[i][DOWN];
+        prePush[i] = key[i][DOWN];
 
         // 현재 키 상태 보관
         {
-            if (GetAsyncKeyState(m_keyID[i]) & 0x8000)
+            if (GetAsyncKeyState(keyID[i]) & 0x8000)
             {
-                m_key[i][DOWN] = true;
+                key[i][DOWN] = true;
             }
             else
             {
-                m_key[i][DOWN] = false;
+                key[i][DOWN] = false;
             }
         }
 
         // 탭 여부 판단
         {
-            if (prePush[i] == false && m_key[i][DOWN] == true)
+            if (prePush[i] == false && key[i][DOWN] == true)
             {
-                m_key[i][TAP] = true;
+                key[i][TAP] = true;
             }
             else
             {
-                m_key[i][TAP] = false;
+                key[i][TAP] = false;
             }
         }
     }
@@ -43,5 +54,5 @@ void UpdateInput()
 
 bool GetKey(KeyID _keyId, KeyState _keyState)
 {
-    return m_key[_keyId][_keyState];
+    return key[_keyId][_keyState];
 }

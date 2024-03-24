@@ -143,8 +143,6 @@
     <ClCompile Include="Survive38s.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Title.cpp" />
-    <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision.h" />
@@ -157,7 +155,6 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="Title.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

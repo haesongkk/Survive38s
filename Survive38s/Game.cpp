@@ -13,7 +13,7 @@
 float m_timerUI = 0;
 ULONGLONG m_tempTime = 0;
 
-int m_hpCount = 3;
+int lifeCount = 3;
 bool m_isCrash = false;
 
 bool m_isOver;
@@ -22,84 +22,22 @@ bool m_isClear;
 bool m_isStart = false;
 const double clearTime = 38;
 
-void updateUI()
-{
-    // 경과 시간
-    m_timerUI += GetDeltaTime();
-    if (m_tempTime >= 10)
-    {
-        m_timerUI += 0.01;
-        m_tempTime -= 10;
-    }
-
-    Draw("time : " + to_string(m_timerUI), m_screenPoint[0][0], Black, White);
-
-    if (m_hpCount == 3)
-    {
-        Draw("O O O", m_screenPoint[0][5], Black, White);
-    }
-    if (m_hpCount == 2)
-    {
-        Draw("X O O", m_screenPoint[0][5], Black, White);
-    }
-    if (m_hpCount == 1)
-    {
-        Draw("X X O", m_screenPoint[0][5], Black, White);
-    }
-
-    if (m_timerUI >= clearTime) m_isClear = true;
-    if (m_hpCount == 0) m_isOver = true;
-
-}
-
-void Game()
-{
-    updateUI();
-}
 
 void InitGame()
 {
     m_isStart = false;
 
-    m_hpCount = 3;
+    lifeCount = 3;
     m_tempTime = 0;
     m_timerUI = 0;
     m_isCrash = false;
-
-    ClearConsole();
-    InitTime();
 
     InitObstacle();
 
     StopBgm();
     PlayBGM(L"gameBGM.wav", 100);
 
-    while (true)
-    {
-        UpdateTime();
-        generateObs();
-        UpdateInput();
-        updatePlayerMove();
-        updateUI();
-
-        DrawPlayer();
-
-
-        if (m_isOver)
-        {
-            StopBgm();
-            PlayBGM(L"BGM.wav", 100);
-            gameOver();
-            break;
-        }
-        if (m_isClear)
-        {
-            StopBgm();
-            PlayBGM(L"BGM.wav", 100);
-            gameClear();
-            break;
-        }
-    }
+    
     return;
 }
 

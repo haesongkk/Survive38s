@@ -25,11 +25,22 @@ enum Color
 	Color_End
 };
 
-void ClearConsole();
+void InitConsole();
+
+void ClearScreen();
 
 void Draw(string _object, COORD _pos, Color _textColor, Color _backColor);
+void Draw(wstring _object, COORD _pos, Color _textColor, Color _backColor);
 
-extern RECT consoleScreenSize;
-extern RECT playerMovableRect;
-extern COORD screenPoint[30];
+struct Object
+{
+	wstring wstr;
+	COORD pos;
+	Color textColor;
+	Color backColor = Black;
+};
+
+void Draw(Object _obj);
+
 extern COORD m_screenPoint[5][6];
+extern COORD screenPoint[30];

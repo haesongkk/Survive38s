@@ -1,14 +1,25 @@
 #pragma once
 
-void showCtrl();
+enum SCENE
+{
+    TITLE,
 
-void gameOver();
-void gameClear();
-void showCredit();
-bool quitGame();
+    GAME,
+    CTRL,
+    CREDIT,
+    QUIT,
 
-void InitScene();
-void UpdateScene();
+    CLEAR,
+    OVER,
+
+    END,
+
+};
+
+void Initialize();
+void Loop();
+
+void SetScene(SCENE _scene);
 
 extern bool isStart;
 extern bool isCtrl;

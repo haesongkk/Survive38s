@@ -54,34 +54,34 @@ void updateObsDraw(int i)
 {
     // 이전 위치 삭제
 
-    if (m_obs[i].prePos.Y > playerMovableRect.bottom)
+    if (m_obs[i].prePos.Y > HEIGHT -2)
     {
-        m_obs[i].prePos.Y = playerMovableRect.top;
+        m_obs[i].prePos.Y = HEIGHT;
     }
 
     Draw(m_obs[i].scale, m_obs[i].prePos, Black, Black);
 
 
     // 화면 벗어나면 끝
-    if (m_obs[i].curPos.X >= playerMovableRect.right)
+    if (m_obs[i].curPos.X >= WIDTH)
     {
-        m_obs[i].curPos.X = playerMovableRect.right;
+        m_obs[i].curPos.X = WIDTH;
         return;
     }
-    if (m_obs[i].curPos.X <= playerMovableRect.left)
+    if (m_obs[i].curPos.X <= 0)
     {
-        m_obs[i].curPos.X = playerMovableRect.left;
+        m_obs[i].curPos.X = 0;
         return;
     }
-    if (m_obs[i].curPos.Y > playerMovableRect.bottom)
+    if (m_obs[i].curPos.Y > HEIGHT - 2)
     {
         //obs[i].prePos.Y = playerMovableRect.Bottom + 1;
-        m_obs[i].curPos.Y = playerMovableRect.bottom + 1;
+        m_obs[i].curPos.Y = HEIGHT;
 
     }
-    if (m_obs[i].curPos.Y <= playerMovableRect.top)
+    if (m_obs[i].curPos.Y <= 0)
     {
-        m_obs[i].curPos.Y = playerMovableRect.top;
+        m_obs[i].curPos.Y = 0;
         return;
     }
 

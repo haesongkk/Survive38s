@@ -35,9 +35,6 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{441ad62f-32fc-4f92-b493-e9cc15228921}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Title">
-      <UniqueIdentifier>{65a54d3f-fbe4-4faa-bcbb-c88395ae8a28}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sound.cpp">
@@ -52,9 +49,6 @@
     </ClCompile>
     <ClCompile Include="Render.cpp">
       <Filter>Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Util.cpp">
-      <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
@@ -71,7 +65,6 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sound.h">
@@ -105,6 +98,5 @@
     <ClInclude Include="Scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Title.h" />
   </ItemGroup>
 </Project>

@@ -23,6 +23,8 @@ bool onGround = true;
 bool onJump;
 bool isCrash;
 
+Color g_playerState = White;
+
 void updatePlayerMove()
 {
     static ULONGLONG time = 0;
@@ -37,8 +39,8 @@ void updatePlayerMove()
 
 void InitPlayer()
 {
-    m_pos.X = (playerMovableRect.right + playerMovableRect.left) / 2;
-    m_pos.Y = playerMovableRect.bottom;
+    m_pos.X = WIDTH / 2;
+    m_pos.Y = HEIGHT - 2;
 }
 
 void updatePlayerPos()
@@ -53,13 +55,13 @@ void updatePlayerPos()
         velocity -= jumpVelocity;
     }
 
-    if (m_pos.Y <= playerMovableRect.top)
+    if (m_pos.Y <= 0)
     {
-        m_pos.Y = playerMovableRect.top;
+        m_pos.Y = 0;
     }
-    if (m_pos.Y >= playerMovableRect.bottom)
+    if (m_pos.Y >= HEIGHT-2)
     {
-        m_pos.Y = playerMovableRect.bottom;
+        m_pos.Y = HEIGHT - 2;
         velocity = 0;
         onGround = true;
         onJump = false;
@@ -77,13 +79,13 @@ void updatePlayerPos()
     if (GetKey(RIGHT, TAP))
     {
         m_pos.X++;
-        limit(m_pos.X, playerMovableRect.left, playerMovableRect.right);
+        Limit(m_pos.X, (short)0, (short)WIDTH);
     }
 
     if (GetKey(LEFT,TAP))
     {
         m_pos.X--;
-        limit(m_pos.X, playerMovableRect.left, playerMovableRect.right);
+        Limit(m_pos.X, (short)0, (short)HEIGHT);
     }
 
 
