@@ -5,8 +5,7 @@ void updatePlayerPos();
 void updatePlayerMove();
 
 void InitPlayer();
+void UpdatePlayer();
+void RenderPlayer();
 
-extern COORD m_pos;
-extern COORD m_prePos;
-extern bool m_isCrash;
-extern Color g_playerState;
+extern bool isCrash;

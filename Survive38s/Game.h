@@ -6,7 +6,7 @@ void DrawPlayer();
 
 void updateUI();
 
-void Game();
+void UpdateGame();
 
 extern int lifeCount;
 extern const double clearTime;

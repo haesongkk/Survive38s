@@ -10,174 +10,207 @@
 #include "Obstacle.h"
 #include "Player.h"
 
-double playTime = 0;
-
-SCENE curScene;
-SCENE selected = GAME;
-
-vector<pair<wstring, COORD>> ui[END] = {};
-
-vector<Object> objects[END] = {};
-
-void DrawUI()
-{
-    for (auto obj : objects[curScene])
-        Draw(obj);
-}
-
-void Title()
-{
-    for (int i = 0; i < ui[TITLE].size(); i++)
-    {
-        if (selected == i)
-            Draw(ui[TITLE][i].first , ui[TITLE][i].second, Purple, Black);
-        else
-            Draw(ui[TITLE][i].first, ui[TITLE][i].second, White, Black);
-    }
-
-    if (GetKey(SPACE, TAP))
-        SetScene(selected);
-    if (GetKey(RIGHT, TAP))
-        selected = (SCENE)(selected + 1);
-    if (GetKey(LEFT, TAP))
-        selected = (SCENE)(selected - 1);
-
-    Limit(selected, GAME, QUIT);
-}
-
 bool isQuit = false;
-int selectedNum = 1;
-void Quit()
-{
-    const wstring wstr[] = {
-       L"게 임 을  종 료 하 시 겠 습 니 까 ?",
-       L"메 인 으 로",
-       L"나 가 기",
-    };
-    const COORD pos[] = {
-      m_screenPoint[1][1],
-      m_screenPoint[3][1],
-      m_screenPoint[3][3],
-    };
 
-    for (int i = 0; i < 3; i++)
-    {
-        if (selectedNum == i)
-            Draw(wstr[i], pos[i], Purple, Black);
-        else
-            Draw(wstr[i], pos[i], White, Black);
-    }
+SCENE curScene = TITLE;
+vector<Object> uiObjects = {};
+
+int activated = 1;
+
+double playTime = 0.f;
+const double clearTime = 38.f;
+
+void InitTitle()
+{
+    activated = 1;
+    uiObjects.resize(5);
+    uiObjects[0] = { L"3 8 초  버 티 기", m_screenPoint[1][2] };
+    uiObjects[1] = { L"시 작", m_screenPoint[3][1] };
+    uiObjects[2] = { L"조 작", m_screenPoint[3][2] };
+    uiObjects[3] = { L"정 보", m_screenPoint[3][3] };
+    uiObjects[4] = { L"종 료", m_screenPoint[3][4] };
+}
+
+void InitQuit()
+{
+    activated = 1;
+    uiObjects.resize(3);
+    uiObjects[0] = { L"게 임 을  종 료 하 시 겠 습 니 까 ?", m_screenPoint[1][1] };
+    uiObjects[1] = { L"메 인 으 로", m_screenPoint[3][1] };
+    uiObjects[2] = { L"나 가 기", m_screenPoint[3][3] };
+}
+
+
+void InitCtrl()
+{
+    uiObjects.resize(3);
+    uiObjects[0] = { L"조 작", m_screenPoint[1][2], Green };
+    uiObjects[1] = { L"이 동  :  좌 우  방 향 키", m_screenPoint[2][2], Green };
+    uiObjects[2] = { L"점 프  :  스 페 이 스 바", m_screenPoint[3][2], Green };
+}
+
+void InitCredit()
+{
+    uiObjects.resize(3);
+    uiObjects[0] = { L"정 보", m_screenPoint[1][2], Green };
+    uiObjects[1] = { L"플 밍  2 반", m_screenPoint[2][2], Green };
+    uiObjects[2] = { L"신 해 성", m_screenPoint[3][2], Green };
+}
+
+void InitClear()
+{
+    uiObjects.resize(1);
+    uiObjects[0] = { L"클리어!", m_screenPoint[1][2], Green };
+
+    StopBgm();
+    PlayBGM(L"BGM.wav", 100);
+}
+
+void InitOver()
+{
+    uiObjects.resize(2);
+    uiObjects[0] = { L"게임 오버", m_screenPoint[1][2], Green };
+    uiObjects[1] = { L"time : " + to_wstring(playTime), m_screenPoint[2][2], Green };
+
+    StopBgm();
+    PlayBGM(L"BGM.wav", 100);
+}
+
+void InitGame()
+{
+    InitPlayer();
+    //InitObstacle();
+    //InitCollision();
+
+    uiObjects.resize(3);
+    uiObjects[0] = { L"time : ", m_screenPoint[0][0] };
+    uiObjects[1] = { L"O O O" , m_screenPoint[0][5] };
+    uiObjects[2] = { wstring(120, L' ') , m_screenPoint[4][0], White,White };
+
+    StopBgm();
+    PlayBGM(L"gameBGM.wav", 100);
+}
+
+void UpdateTitle()
+{
+    for (auto& ui : uiObjects)
+        ui.textColor = White;
+    uiObjects[activated].textColor = Purple;
+
+    if (GetKey(RIGHT, TAP)) activated++;
+    if (GetKey(LEFT, TAP)) activated--;
+
+    if (GetKey(SPACE, TAP))
+        SetScene((SCENE)activated);
+
+    Limit(activated, 1, 4);
+}
+
+void UpdateQuit()
+{
+    for (auto& ui : uiObjects)
+        ui.textColor = White;
+    uiObjects[activated].textColor = Purple;
+
+    if (GetKey(RIGHT, TAP)) activated++;
+    if (GetKey(LEFT, TAP)) activated--;
 
     if (GetKey(SPACE, TAP))
     {
-        if (selectedNum == 1) SetScene(TITLE);
-        else isQuit = true;
+        if (activated == 1) SetScene(TITLE);
+        if (activated == 2) isQuit = true;
     }
-    if (GetKey(RIGHT, TAP)) selectedNum++;
-    if (GetKey(LEFT, TAP)) selectedNum--;
+
+    Limit(activated, 1, 2);
+
 }
 
-void Game()
+void UpdatePage()
 {
-    playTime += GetDeltaTime();
+    if (GetKey(SPACE, TAP)) SetScene(TITLE);
+}
 
-    //UpdatePlayer();
+void UpdateGame()
+{
+    UpdatePlayer();
     //UpdateObstacle();
+    //UpdateCollision();
+    
+    playTime += GetDeltaTime();
+    wstring tmp = to_wstring(playTime);
+    tmp.erase(tmp.length() - 3, 3);
+    uiObjects[0].wstr = L"time : " + tmp;
 
-    wstring wstr[4] = {
-        L"time : ",
-        L"X X O"
-        L"X O O",
-        L"O O O",
-    };
-    Draw(wstr[0] + to_wstring(playTime), m_screenPoint[0][0], White, Black);
-    Draw(wstr[lifeCount], m_screenPoint[0][5], White, Black);
-
-    Draw(L"  ", m_pos, g_playerState, g_playerState);
-    for (int i = 0; i < 171; i++)
-        Draw(m_obs[i].shape, m_obs[i].curPos, White, White);
-
-   
     if (playTime >= clearTime) SetScene(CLEAR);
-    if (lifeCount == 0) SetScene(OVER);
+
+    // 플레이어로 옮기기
+    //if (lifeCount == 0) SetScene(OVER);
 }
 
-void Ctrl()
-{
-    Draw("조 작", m_screenPoint[1][2], Green, Black);
-    Draw("이 동  :  좌 우  방 향 키", m_screenPoint[2][2], Green, Black);
-    Draw("점 프  :  스 페 이 스 바", m_screenPoint[3][2], Green, Black);
-    if (GetKey(SPACE, TAP)) SetScene(TITLE);
-}
+void(*InitScene[END])(void) = {
+    InitTitle, 
 
-void Credit()
-{
-    Draw("정 보", m_screenPoint[1][2], Green, Black);
-    Draw("플 밍  2 반", m_screenPoint[2][2], Green, Black);
-    Draw("신 해 성", m_screenPoint[3][2], Green, Black);
-    if (GetKey(SPACE, TAP)) SetScene(TITLE);
-}
+    InitGame, 
+    InitCtrl, 
+    InitCredit, 
+    InitQuit, 
 
-void Clear()
-{
-    Draw("클리어!", m_screenPoint[1][2], Green, Black);
-    if (GetKey(SPACE, TAP)) SetScene(TITLE);
-}
+    InitClear, 
+    InitOver
+};
 
-void Over()
+void(*UpdateScene[END])(void) = {
+    UpdateTitle, 
+
+    UpdateGame, 
+    UpdatePage,
+    UpdatePage,
+    UpdateQuit, 
+
+    UpdatePage,
+    UpdatePage
+};
+
+
+void RenderScene()
 {
-    Draw("게임 오버", m_screenPoint[1][2], Green, Black);
-    Draw("time : " + to_string(playTime), m_screenPoint[2][2], Green, Black);
-    if (GetKey(SPACE, TAP)) SetScene(TITLE);
+    for (auto ui : uiObjects)
+        RenderObject(ui);
+
+    if (curScene == GAME)
+    {
+        RenderPlayer();
+        //RenderObstacles();
+    }
 }
 
 void SetScene(SCENE _scene)
 {
-    ClearScreen();
     curScene = _scene;
-    if (curScene == GAME) InitGame();
-    else
-    {
-        StopBgm();
-        PlayBGM(L"BGM.wav", 100);
-    }
+
+    InitScene[curScene]();
 }
 
 void Initialize()
 {
     InitTime();
     InitKey();
-    InitConsole();
-
-    ui[TITLE].push_back(make_pair(L"3 8 초  버 티 기", m_screenPoint[1][2]));
-    ui[TITLE].push_back(make_pair(L"시 작", m_screenPoint[3][1]));
-    ui[TITLE].push_back(make_pair(L"조 작", m_screenPoint[3][2]));
-    ui[TITLE].push_back(make_pair(L"정 보", m_screenPoint[3][3]));
-    ui[TITLE].push_back(make_pair(L"종 료", m_screenPoint[3][4]));
-
-    objects[TITLE].resize(5);
-    objects[GAME].resize(5);
-    objects[CTRL].resize(5);
-    objects[CREDIT].resize(5);
-    objects[QUIT].resize(5);
-    objects[CLEAR].resize(5);
-    objects[OVER].resize(5);
-
+    InitRender();
 
     SetScene(TITLE);
+
+    PlayBGM(L"BGM.wav", 100);
 }
 
-void(*sceneMap[END])(void)  = {
-    Title, Game, Ctrl, Credit, Quit, Clear, Over
-};
 void Loop()
 {
     while (!isQuit)
     {
         UpdateTime();
         UpdateKey();
-        // 더블버퍼링
+        UpdateRender();
 
-        sceneMap[curScene]();
+        UpdateScene[curScene]();
+        RenderScene();
     }
 }

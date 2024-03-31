@@ -10,44 +10,13 @@
 #include "Key.h"
 #include "Scene.h"
 
-float m_timerUI = 0;
-ULONGLONG m_tempTime = 0;
-
-int lifeCount = 3;
-bool m_isCrash = false;
-
-bool m_isOver;
-bool m_isClear;
-
-bool m_isStart = false;
-const double clearTime = 38;
-
-
-void InitGame()
-{
-    m_isStart = false;
-
-    lifeCount = 3;
-    m_tempTime = 0;
-    m_timerUI = 0;
-    m_isCrash = false;
-
-    InitObstacle();
-
-    StopBgm();
-    PlayBGM(L"gameBGM.wav", 100);
-
-    
-    return;
-}
-
 void DrawPlayer()
 {
     string player = "  ";
-    if (m_prePos.X != m_pos.X || m_prePos.Y != m_pos.Y)
-        Draw(player, m_pos, Black, White);
+    //if (m_prePos.X != m_pos.X || m_prePos.Y != m_pos.Y)
+       /* Draw(player, m_pos, Black, White);
 
-    if (m_isCrash)
+    if (isCrash)
     {
         static ULONGLONG temp;
         temp += GetDeltaTime();
@@ -74,7 +43,7 @@ void DrawPlayer()
         else
         {
             temp = 0;;
-            m_isCrash = false;;
-        }
-    }
+            isCrash = false;;
+        }*/
+   // }
 }
