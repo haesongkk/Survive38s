@@ -1,3 +1,5 @@
 #pragma once
 
-void CollisionCheck(int);
+void InitCollision();
+void UpdateCollision();
+void FinalCollision();

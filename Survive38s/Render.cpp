@@ -7,55 +7,7 @@ HANDLE hConsole = {};
 HANDLE hBackBuffer[2] = {};
 bool bScreenIndex = 0;
 
-COORD m_screenPoint[5][6] = {};
-COORD screenPoint[30];
-
-void Draw(string _object, COORD _pos, Color _textColor, Color _backColor)
-{
-    SetConsoleTextAttribute(hConsole, _textColor | _backColor << 4);
-    COORD pos = _pos;
-    for (int i = 0; i < _object.size(); i++)
-    {
-        if (_object[i] == '\n')
-        {
-            pos.X = _pos.X;
-            pos.Y++;
-            continue;
-        }
-
-        SetConsoleCursorPosition(hConsole, pos);
-        cout << _object[i];
-        pos.X++;
-    }
-
-    return;
-}
-
-void Draw(wstring _object, COORD _pos, Color _textColor, Color _backColor)
-{
-    if (_pos.X < 0 || _pos.X >= WIDTH || _pos.Y < 0 || _pos.Y >= HEIGHT) return;
-
-    SetConsoleTextAttribute(hConsole, _textColor | _backColor << 4);
-    COORD pos = _pos;
-    for (int i = 0; i < _object.size(); i++)
-    {
-        if (_object[i] == '\n')
-        {
-            pos.X = _pos.X;
-            pos.Y++;
-            continue;
-        }
-        SetConsoleCursorPosition(hConsole, pos);
-
-        wcout << _object[i];
-        pos.X++;
-    }
-
-    return;
-}
-void Draw(Object _obj)
-{
-}
+COORD m_coord6x5[5][6] = {};
 
 void InitRender()
 {
@@ -98,7 +50,7 @@ void InitRender()
         {
             short x = WIDTH / 5 * j;
             short y = HEIGHT / 4 * i;
-            m_screenPoint[i][j] = { x,y };
+            m_coord6x5[i][j] = { x,y };
         }
     }
 }
@@ -125,26 +77,38 @@ void UpdateRender()
     FillConsoleOutputAttribute(hBackBuffer[bScreenIndex], csbi.wAttributes, dwConSize, coordScreen, &cCharsWritten);
 }
 
-
-void RenderObject(Object _obj)
+void FinalRender()
 {
+    // 백버퍼 삭제?
+}
+
+void Draw(wstring _wstr, COORD _pos, Color _textColor, Color _backColor)
+{
+    if (_pos.X < 0 || _pos.X >= WIDTH || _pos.Y < 0 || _pos.Y >= HEIGHT) return;
+
     DWORD dw;
-    COORD pos = _obj.pos;
+    COORD pos = _pos;
     wstring wstr;
-    for (int i = 0; i < _obj.wstr.size(); i++)
+    SetConsoleTextAttribute(hBackBuffer[bScreenIndex], _textColor | _backColor << 4);
+
+    for (int i = 0; i < _wstr.size(); i++)
     {
-        if (_obj.wstr[i] == L'\n' || _obj.wstr[i] == L'\0')
+        if (_wstr[i] == L'\n')
         {
-            SetConsoleTextAttribute(hBackBuffer[bScreenIndex], _obj.textColor | _obj.backColor << 4);
             SetConsoleCursorPosition(hBackBuffer[bScreenIndex], pos);
             WriteFile(hBackBuffer[bScreenIndex], wstr.c_str(), wstr.size(), &dw, NULL);
             wstr.clear();
             pos.Y++;
             continue;
         }
-        wstr += _obj.wstr[i];
+        wstr += _wstr[i];
     }
-    SetConsoleTextAttribute(hBackBuffer[bScreenIndex], _obj.textColor | _obj.backColor << 4);
     SetConsoleCursorPosition(hBackBuffer[bScreenIndex], pos);
     WriteConsoleW(hBackBuffer[bScreenIndex], wstr.c_str(), wstr.size(), &dw, NULL);
+    return;
+}
+
+COORD Coord6x5(int x, int y)
+{
+    return m_coord6x5[y][x];
 }

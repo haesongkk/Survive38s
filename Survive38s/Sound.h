@@ -1,4 +1,8 @@
 #pragma once
 
-void PlayBGM(wstring _soundFile, int _volume);
-void StopBgm();
+void InitSound();
+void UpdateSound();
+void FinalSound();
+
+void Play(wstring _soundFile, int _volume);
+void Stop();

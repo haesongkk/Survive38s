@@ -19,6 +19,10 @@ void UpdateTime()
     deltaTime = currentTime - previousTime;
 }
 
+void FinalTime()
+{
+}
+
 double GetDeltaTime()
 {
     return deltaTime * 0.001;

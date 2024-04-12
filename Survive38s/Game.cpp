@@ -1,49 +1,67 @@
 #include "Header.h"
 #include "Game.h"
 
-#include "Render.h"
 #include "Player.h"
+#include "Obstacle.h"
+#include "Collision.h"
+
+#include "Render.h"
 #include "Time.h"
 #include "Sound.h"
-#include "Obstacle.h"
-#include "Sound.h"
-#include "Key.h"
+#include "Input.h"
 #include "Scene.h"
 
-void DrawPlayer()
-{
-    string player = "  ";
-    //if (m_prePos.X != m_pos.X || m_prePos.Y != m_pos.Y)
-       /* Draw(player, m_pos, Black, White);
+const double clearTime = 38.f;
+double playTime;
 
-    if (isCrash)
-    {
-        static ULONGLONG temp;
-        temp += GetDeltaTime();
-        if (temp < 200)
-        {
-            Draw(player, m_pos, Black, Green);
-        }
-        else if (temp < 400)
-        {
-            Draw(player, m_pos, Black, Purple);
-        }
-        else if (temp < 600)
-        {
-            Draw(player, m_pos, Black, Green);
-        }
-        else if (temp < 800)
-        {
-            Draw(player, m_pos, Black, Purple);
-        }
-        else if (temp < 1000)
-        {
-            Draw(player, m_pos, Black, Green);
-        }
-        else
-        {
-            temp = 0;;
-            isCrash = false;;
-        }*/
-   // }
+void InitGame()
+{
+    InitPlayer();
+    InitObstacle();
+    InitCollision();
+
+    Stop();
+    Play(L"gameBGM.wav", 100);
+}
+
+void UpdateGame()
+{
+    UpdatePlayer();
+    UpdateObstacle();
+    UpdateCollision();
+
+    // 바닥
+    Draw(wstring(120, L' '), Coord6x5(0, 4), White, White);
+
+    // 플레이 타임 ui
+    playTime += GetDeltaTime();
+    wstring timerUI = to_wstring(playTime);
+    timerUI.erase(timerUI.length() - 3, 3);
+    Draw(L"time : " + timerUI, Coord6x5(0, 0));
+
+    // 남은 생명 ui
+    wstring lifeUI;
+    int life = LifeCount();
+    if (life == 3) lifeUI = L"O O O";
+    if (life == 2) lifeUI = L"O O X";
+    if (life == 1) lifeUI = L"O X X";
+    Draw(lifeUI, Coord6x5(5, 0));
+
+    // 게임 클리어
+    if (playTime >= clearTime) SetScene(CLEAR);
+}
+
+void FinalGame()
+{
+    FinalPlayer();
+    FinalObstacle();
+    FinalCollision();
+
+    Stop();
+    Play(L"BGM.wav", 100);
+}
+
+double PlayTime()
+{
+    return playTime;
 }

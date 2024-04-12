@@ -1,19 +1,16 @@
 #pragma once
 
 #include <iostream>
-#include <Windows.h>
+#include <windows.h>
 #include <conio.h>
 #include <string>
+#include <cassert>
 
 #include <map>
 #include <vector>
 using namespace std;
 
+#include "Util.h"
 
 #define WIDTH 120
 #define HEIGHT 30
-
-struct Vector2
-{
-	double x, y;
-};

@@ -1,19 +1,33 @@
 #include "Header.h"
 #include "Sound.h"
 
-#pragma comment (lib, "winmm.lib")  
 #include <mmsystem.h>;                
 #include <Digitalv.h>; 
 
+#pragma comment (lib, "winmm.lib")  
 
-void PlayBGM(wstring _soundFile, int _volume)
+void InitSound()
+{
+    Play(L"BGM.wav", 100);
+}
+
+void UpdateSound()
+{
+}
+
+void FinalSound()
+{
+    Stop();
+}
+
+void Play(wstring _soundFile, int _volume)
 {
     DWORD dwVolume = (DWORD)(0xFFFF * _volume / 100);
     PlaySound(_soundFile.c_str(), NULL, SND_ASYNC | SND_LOOP | SND_NOSTOP);
     waveOutSetVolume(NULL, MAKELONG(dwVolume, dwVolume));
 }
 
-void StopBgm()
+void Stop()
 {
     PlaySound(NULL, NULL, NULL);
 }

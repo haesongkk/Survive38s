@@ -1,11 +1,10 @@
 #pragma once
-enum Color;
-
-void updatePlayerPos();
-void updatePlayerMove();
 
 void InitPlayer();
 void UpdatePlayer();
-void RenderPlayer();
+void FinalPlayer();
 
-extern bool isCrash;
+void IsCrash();
+
+int LifeCount();
+Vector2 PlayerPos();

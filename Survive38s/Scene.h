@@ -16,7 +16,8 @@ enum SCENE
 
 };
 
-void Initialize();
-void Loop();
+void InitScene();
+void UpdateScene();
+void FinalScene();
 
 void SetScene(SCENE _scene);

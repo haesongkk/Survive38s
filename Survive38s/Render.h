@@ -26,22 +26,8 @@ enum Color
 };
 
 void InitRender();
-
-void Draw(string _object, COORD _pos, Color _textColor, Color _backColor);
-void Draw(wstring _object, COORD _pos, Color _textColor, Color _backColor);
-
-struct Object
-{
-	wstring wstr = L"  ";
-	COORD pos;
-	Color textColor = White;
-	Color backColor = Black;
-};
-
-void Draw(Object _obj);
 void UpdateRender();
-void ScreenPrint(COORD _pos, wstring _wstr);
-void RenderObject(Object _obj);
+void FinalRender();
 
-extern COORD m_screenPoint[5][6];
-extern COORD screenPoint[30];
+void Draw(wstring _object, COORD _pos, Color _textColor = White, Color _backColor = Black);
+COORD Coord6x5(int x, int y);

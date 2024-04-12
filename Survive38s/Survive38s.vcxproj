@@ -70,6 +70,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)Execute</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Execute</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -133,28 +139,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Clear.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Credit.cpp" />
+    <ClCompile Include="Ctrl.cpp" />
+    <ClCompile Include="Framework.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="Over.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Quit.cpp" />
     <ClCompile Include="Render.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Survive38s.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Clear.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="Credit.h" />
+    <ClInclude Include="Ctrl.h" />
+    <ClInclude Include="Framework.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Header.h" />
-    <ClInclude Include="Key.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="Over.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Quit.h" />
     <ClInclude Include="Render.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

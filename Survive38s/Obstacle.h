@@ -1,25 +1,20 @@
 #pragma once
 
-void InitObstacle();
-
-void UpdateObstacle(int);
-void updateObsDraw(int);
-
-void generateObs();
-
 struct Obstacle
 {
-    COORD curPos; // 생성위치
-    COORD prePos;
-    ULONGLONG time;
-    double speed; // 이동속도
-    int direction; // 이동방향
-    const char* scale = "  ";
-
-    wstring shape = L"  ";
+    double time;
     Vector2 pos;
-    Vector2 move;
+    Vector2 dir;
 
+    Vector2 size;
+    wstring wstr;
+
+    bool bGenerate = false;
+    bool bDestroy = false;
 };
 
-extern Obstacle m_obs[171];
+void InitObstacle();
+void UpdateObstacle();
+void FinalObstacle();
+
+vector<Obstacle> GetObstacles();

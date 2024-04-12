@@ -3,20 +3,22 @@
 
 #include "Player.h"
 #include "Obstacle.h"
-#include "Game.h"
 
-// obs와 플레이어 충돌 감지
-void CollisionCheck(int i)
+void InitCollision()
 {
-    if (!isCrash)
-    {
-        for (int k = 0; k < strlen(m_obs[i].scale); k++)
-        {
-            /*if (m_obs[i].curPos.X + k == m_pos.X && m_obs[i].curPos.Y == m_pos.Y)
-            {
-                lifeCount--;
-                isCrash = true;
-            }*/
-        }
-    }
+}
+
+void UpdateCollision()
+{
+    Vector2 player = PlayerPos();
+    for (auto obs : GetObstacles())
+        if (player.x >= obs.pos.x
+            && player.x < obs.pos.x + obs.size.x
+            && player.x >= obs.pos.y
+            && player.y < obs.pos.y + obs.size.y)
+            IsCrash();
+}
+
+void FinalCollision()
+{
 }

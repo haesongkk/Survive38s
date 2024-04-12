@@ -1,10 +1,9 @@
 ﻿#include "Header.h"
-
-#include "Scene.h"
+#include "Framework.h"
 
 int main()
 {
     Initialize();
     Loop();
+    Finalize();
 }
-
