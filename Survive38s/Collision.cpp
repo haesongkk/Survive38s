@@ -12,9 +12,10 @@ void UpdateCollision()
 {
     Vector2 player = PlayerPos();
     for (auto obs : GetObstacles())
-        if (player.x >= obs.pos.x
+        if (obs.bGenerate && !obs.bDestroy
+            && player.x >= obs.pos.x
             && player.x < obs.pos.x + obs.size.x
-            && player.x >= obs.pos.y
+            && player.y >= obs.pos.y
             && player.y < obs.pos.y + obs.size.y)
             IsCrash();
 }

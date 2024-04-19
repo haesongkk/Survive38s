@@ -14,7 +14,7 @@ void LoadTxt()
     path current_dir = current_path();
 
     // recursive_ : 모든 하위 디렉토리 재귀적으로 탐색
-    for (const auto& entry : directory_iterator(current_dir))
+    for (const auto& entry : recursive_directory_iterator(current_dir))
     {
         if (entry.path().extension() == ".txt")
         {

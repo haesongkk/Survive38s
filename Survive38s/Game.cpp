@@ -21,7 +21,9 @@ void InitGame()
     InitCollision();
 
     Stop();
-    Play(L"gameBGM.wav", 100);
+    Play(L"./Resource/gameBGM.wav", 100);
+
+    playTime = 0.f;
 }
 
 void UpdateGame()
@@ -45,7 +47,7 @@ void UpdateGame()
     if (life == 3) lifeUI = L"O O O";
     if (life == 2) lifeUI = L"O O X";
     if (life == 1) lifeUI = L"O X X";
-    Draw(lifeUI, Coord6x5(5, 0));
+    Draw(lifeUI, /*Coord6x5(4, 0)*/{ (short)(WIDTH - lifeUI.length()),0 });
 
     // 게임 클리어
     if (playTime >= clearTime) SetScene(CLEAR);
@@ -58,7 +60,7 @@ void FinalGame()
     FinalCollision();
 
     Stop();
-    Play(L"BGM.wav", 100);
+    Play(L"./Resource/BGM.wav", 100);
 }
 
 double PlayTime()

@@ -66,7 +66,7 @@ void FinalScene()
 
 void SetScene(SCENE _scene)
 {
+    FinalFunc[curScene]();
     curScene = _scene;
-    FinalFunc[_scene]();
     InitFunc[curScene]();
 }

@@ -18,10 +18,9 @@ int life;
 
 double velocity;
 int jumpCount;
-
-const double gravity = 0.0001f;
-const double moveSpeed = 0.05f;
-const double jumpVelocity[2] = { -0.05f,-0.075f };
+const double gravity = 1500.f;
+const double moveSpeed = 150.f;
+const double jumpVelocity[2] = { -200.f,-150.f };
 
 void InitPlayer()
 {
@@ -40,34 +39,34 @@ void InitPlayer()
 
 void UpdatePlayer()
 {
-    // 중력
-    velocity += gravity;
-    pos.y += velocity;
-    if (pos.y >= HEIGHT - 3)
+    // 좌우 이동
+    if (GetKey(RIGHT, DOWN)) pos.x += moveSpeed * GetDeltaTime();
+    if (GetKey(LEFT, DOWN)) pos.x -= moveSpeed * GetDeltaTime();
+
+
+    // 점프
+    if (GetKey(SPACE, TAP) && jumpCount < 2)
+        velocity = jumpVelocity[jumpCount++];
+
+    pos.y += velocity * GetDeltaTime();
+    velocity += gravity * GetDeltaTime();
+
+    if (pos.y > HEIGHT - 3)
     {
         pos.y = HEIGHT - 3;
         velocity = 0;
         jumpCount = 0;
     }
 
-    // 점프
-    if (GetKey(SPACE, TAP) && jumpCount < 2)
-    {
-        velocity += jumpVelocity[jumpCount++];
-    }
-
-    // 좌우 이동
-    if (GetKey(RIGHT, DOWN)) pos.x += moveSpeed;
-    if (GetKey(LEFT, DOWN)) pos.x -= moveSpeed;
-
     // 이동 반경 제한
     Limit<double>(pos.y, 0, HEIGHT - 3);
-    Limit<double>(pos.x, 0, WIDTH - 1);
+    Limit<double>(pos.x, 0, WIDTH - 2);
+
 
     // 충돌 무적 시간
     if (isCrash) 
     {
-        if (crashTimer += GetDeltaTime() > 1)
+        if ((crashTimer += GetDeltaTime()) > 1)
         {
             isCrash = false;
             crashTimer = 0;

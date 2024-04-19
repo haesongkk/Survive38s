@@ -96,7 +96,7 @@ void Draw(wstring _wstr, COORD _pos, Color _textColor, Color _backColor)
         if (_wstr[i] == L'\n')
         {
             SetConsoleCursorPosition(hBackBuffer[bScreenIndex], pos);
-            WriteFile(hBackBuffer[bScreenIndex], wstr.c_str(), wstr.size(), &dw, NULL);
+            WriteConsoleW(hBackBuffer[bScreenIndex], wstr.c_str(), wstr.size(), &dw, NULL);
             wstr.clear();
             pos.Y++;
             continue;

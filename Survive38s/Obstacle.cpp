@@ -4,6 +4,7 @@
 #include "Render.h"
 #include "Game.h"
 #include "Resource.h"
+#include "Time.h"
 
 vector<Obstacle> obstacles;
 
@@ -12,41 +13,43 @@ void InitObstacle()
     assert(obstacles.empty());
     LoadTxt();
     wstring txt = GetTxt(L"obstacles");
+    int pos;
     while (true)
     {
-        wstring delimiter1(L"\n"), delimiter2(L"/");
-        int pos = txt.find(L"\n");
-        wstring obsInfo = txt.substr(0, pos);
-
         Obstacle obstacle;
 
-        pos = obsInfo.find(L"/");
-        obstacle.time = stof(obsInfo.substr(0, pos));
-        obsInfo.erase(0, pos + 1);
+        pos = txt.find(L"/");
+        obstacle.time = stof(txt.substr(0, pos));
+        txt.erase(0, pos + 1);
 
-        pos = obsInfo.find(L",");
-        obstacle.pos.x = stof(obsInfo.substr(0, pos));
-        obsInfo.erase(0, pos + 1);
+        pos = txt.find(L",");
+        obstacle.pos.x = stof(txt.substr(0, pos));
+        txt.erase(0, pos + 1);
 
-        pos = obsInfo.find(L"/");
-        obstacle.pos.y = stof(obsInfo.substr(0, pos));
-        obsInfo.erase(0, pos + 1);
+        pos = txt.find(L"/");
+        obstacle.pos.y = stof(txt.substr(0, pos));
+        txt.erase(0, pos + 1);
 
-        pos = obsInfo.find(L",");
-        obstacle.dir.x = stof(obsInfo.substr(0, pos));
-        obsInfo.erase(0, pos + 1);
+        pos = txt.find(L",");
+        obstacle.dir.x = stof(txt.substr(0, pos));
+        txt.erase(0, pos + 1);
 
-        pos = obsInfo.find(L"/");
-        obstacle.dir.y = stof(obsInfo.substr(0, pos));
-        obsInfo.erase(0, pos + 1);
+        pos = txt.find(L"/");
+        obstacle.dir.y = stof(txt.substr(0, pos));
+        txt.erase(0, pos + 1);
 
-        pos = obsInfo.find(L",");
-        obstacle.size.x = stof(obsInfo.substr(0, pos));
-        obsInfo.erase(0, pos + 1);
+        pos = txt.find(L",");
+        obstacle.size.x = stof(txt.substr(0, pos));
+        txt.erase(0, pos + 1);
 
-        pos = obsInfo.find(L"\n");
-        obstacle.size.y = stof(obsInfo.substr(0, pos));
-        obsInfo.erase(0, pos + 1);
+        pos = txt.find(L"\n");
+        obstacle.size.y = stof(txt.substr(0, pos));
+        txt.erase(0, pos + 1);
+
+        for (int i = 0; i < obstacle.size.y; i++)
+        {
+            obstacle.wstr += wstring(obstacle.size.x, L' ') + L"\n";
+        }
 
         obstacles.push_back(obstacle);
 
@@ -65,8 +68,8 @@ void UpdateObstacle()
             obs.bGenerate = true;
 
         // 소멸 조건 : 화면 나가면
-        if (obs.pos.x <= 0 ||
-            obs.pos.y <= 0 ||
+        if (obs.pos.x < 0 ||
+            obs.pos.y < 0 ||
             obs.pos.x >= WIDTH ||
             obs.pos.y >= HEIGHT)
             obs.bDestroy = true;
@@ -75,8 +78,8 @@ void UpdateObstacle()
         if (obs.bGenerate && !obs.bDestroy)
         {
             // 이동
-            obs.pos.x += obs.dir.x * 2;
-            obs.pos.y += obs.dir.y;
+            obs.pos.x += obs.dir.x * GetDeltaTime() * 100;
+            obs.pos.y += obs.dir.y * GetDeltaTime() * 100;
 
             // 그리기
             Draw(obs.wstr, to_coord(obs.pos), White, White);

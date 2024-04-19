@@ -8,7 +8,7 @@
 
 void InitSound()
 {
-    Play(L"BGM.wav", 100);
+    Play(L"./Resource/BGM.wav", 100);
 }
 
 void UpdateSound()
