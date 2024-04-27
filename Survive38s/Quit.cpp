@@ -17,7 +17,7 @@ void InitQuit()
 
 void UpdateQuit()
 {
-    Draw(L"게 임 을  종 료 하 시 겠 습 니 까 ?", Coord6x5(1, 1));
+    Draw(L"게 임 을  종 료 하 시 겠 습 니 까 ?", Coord6x5(1, 1), Green);
     Draw(L"메 인 으 로", Coord6x5(1, 3));
     Draw(L"나 가 기", Coord6x5(3, 3));
 

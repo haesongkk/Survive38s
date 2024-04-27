@@ -15,7 +15,7 @@ void InitTitle()
 
 void UpdateTitle()
 {
-    Draw(L"3 8 초  버 티 기", Coord6x5(2, 1));
+    Draw(L"3 8 초  버 티 기", Coord6x5(2, 1), Green);
     Draw(L"시 작", Coord6x5(1, 3));
     Draw(L"조 작", Coord6x5(2, 3));
     Draw(L"정 보", Coord6x5(3, 3));

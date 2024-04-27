@@ -27,7 +27,7 @@ void InitPlayer()
     pos.x = WIDTH / 2;
     pos.y = HEIGHT - 3;
 
-    color = White;
+    color = Purple;
 
     velocity = 0.f;
     jumpCount = 0;
@@ -66,17 +66,18 @@ void UpdatePlayer()
     // 충돌 무적 시간
     if (isCrash) 
     {
-        if ((crashTimer += GetDeltaTime()) > 1)
-        {
-            isCrash = false;
-            crashTimer = 0;
-            color = White;
-        }
-
         if ((int)(crashTimer * 10) / 2 % 2 == 0)
             color = Green;
         if ((int)(crashTimer * 10) / 2 % 2 == 1)
             color = Purple;
+
+        if ((crashTimer += GetDeltaTime()) > 1)
+        {
+            isCrash = false;
+            crashTimer = 0;
+            color = Purple;
+        }
+
     }
 
     // 그리기
