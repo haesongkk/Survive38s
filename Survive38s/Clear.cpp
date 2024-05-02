@@ -11,7 +11,7 @@ void InitClear()
 
 void UpdateClear()
 {
-    Draw(L"클리어!", Coord6x5(2, 1), Green);
+    Draw(L"클리어!", { 40, 10 }, Green);
     if (GetKey(SPACE, TAP)) SetScene(TITLE);
 }
 

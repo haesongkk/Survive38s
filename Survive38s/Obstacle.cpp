@@ -58,7 +58,7 @@ void InitObstacle()
 
 }
 
-void UpdateObstacle()
+void FixedUpdateObstacle()
 {
     double playTime = PlayTime();
     for (auto& obs : obstacles)
@@ -70,21 +70,25 @@ void UpdateObstacle()
         // 소멸 조건 : 화면 나가면
         if (obs.pos.x < 0 ||
             obs.pos.y < 0 ||
-            obs.pos.x >= WIDTH ||
-            obs.pos.y >= HEIGHT)
+            obs.pos.x + obs.size.x >= WIDTH ||
+            obs.pos.y + obs.size.y >= HEIGHT)
             obs.bDestroy = true;
 
         // 생성이 된 후 소멸되지 않은 애들만 업데이트
         if (obs.bGenerate && !obs.bDestroy)
         {
             // 이동
-            obs.pos.x += obs.dir.x * GetDeltaTime() * 100;
-            obs.pos.y += obs.dir.y * GetDeltaTime() * 100;
-
-            // 그리기
-            Draw(obs.wstr, to_coord(obs.pos), White, White);
+            obs.pos.x += obs.dir.x * 0.02f * 100;
+            obs.pos.y += obs.dir.y * 0.02f * 100;
         }
     }
+}
+
+void RenderObstacle()
+{
+    for (auto& obs : obstacles)
+        if (obs.bGenerate && !obs.bDestroy)
+            Draw(obs.wstr, to_coord(obs.pos), White, White);
 }
 
 void FinalObstacle()

@@ -30,4 +30,3 @@ void UpdateRender();
 void FinalRender();
 
 void Draw(wstring _object, COORD _pos, Color _textColor = White, Color _backColor = Black);
-COORD Coord6x5(int x, int y);

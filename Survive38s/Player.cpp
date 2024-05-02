@@ -16,11 +16,12 @@ bool isCrash;
 double crashTimer;
 int life;
 
+bool onJump;
 double velocity;
 int jumpCount;
-const double gravity = 1500.f;
-const double moveSpeed = 150.f;
-const double jumpVelocity[2] = { -200.f,-150.f };
+const double gravity = 0.75f;
+const double moveSpeed = 3.f;
+const double jumpVelocity[2] = { -4.f, -3.f };
 
 void InitPlayer()
 {
@@ -29,6 +30,7 @@ void InitPlayer()
 
     color = Purple;
 
+    onJump = false;
     velocity = 0.f;
     jumpCount = 0;
 
@@ -37,19 +39,24 @@ void InitPlayer()
     life = 3;
 }
 
-void UpdatePlayer()
+void FixedUpdatePlayer()
 {
+    double dt = GetDeltaTime();
     // 좌우 이동
-    if (GetKey(RIGHT, DOWN)) pos.x += moveSpeed * GetDeltaTime();
-    if (GetKey(LEFT, DOWN)) pos.x -= moveSpeed * GetDeltaTime();
+    if (GetKey(RIGHT, DOWN)) pos.x += moveSpeed;
+    if (GetKey(LEFT, DOWN)) pos.x -= moveSpeed;
 
 
     // 점프
-    if (GetKey(SPACE, TAP) && jumpCount < 2)
-        velocity = jumpVelocity[jumpCount++];
+    if (onJump)
+    {
+        onJump = false;
+        if (jumpCount < 2) velocity = jumpVelocity[jumpCount++];
+    }
+   
 
-    pos.y += velocity * GetDeltaTime();
-    velocity += gravity * GetDeltaTime();
+    pos.y += velocity;
+    velocity += gravity;
 
     if (pos.y > HEIGHT - 3)
     {
@@ -71,7 +78,7 @@ void UpdatePlayer()
         if ((int)(crashTimer * 10) / 2 % 2 == 1)
             color = Purple;
 
-        if ((crashTimer += GetDeltaTime()) > 1)
+        if ((crashTimer += dt) > 1)
         {
             isCrash = false;
             crashTimer = 0;
@@ -79,8 +86,12 @@ void UpdatePlayer()
         }
 
     }
+    
+}
 
-    // 그리기
+void RenderPlayer()
+{
+    if (GetKey(SPACE, TAP)) onJump = true;
     Draw(L"  ", to_coord(pos), White, color);
 }
 

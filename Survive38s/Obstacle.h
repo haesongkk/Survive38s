@@ -14,7 +14,8 @@ struct Obstacle
 };
 
 void InitObstacle();
-void UpdateObstacle();
+void FixedUpdateObstacle();
+void RenderObstacle();
 void FinalObstacle();
 
 vector<Obstacle> GetObstacles();

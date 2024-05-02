@@ -8,7 +8,7 @@ void InitCollision()
 {
 }
 
-void UpdateCollision()
+void FixedUpdateCollision()
 {
     Vector2 player = PlayerPos();
     for (auto obs : GetObstacles())

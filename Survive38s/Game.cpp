@@ -14,6 +14,9 @@
 const double clearTime = 38.f;
 double playTime;
 
+const double fixedUpdateTime = 0.02f;
+double fixedUpdateTimer;
+
 void InitGame()
 {
     InitPlayer();
@@ -24,22 +27,31 @@ void InitGame()
     Play(L"./Resource/gameBGM.wav", 100);
 
     playTime = 0.f;
+    fixedUpdateTimer = 0.f;
 }
 
 void UpdateGame()
 {
-    UpdatePlayer();
-    UpdateObstacle();
-    UpdateCollision();
+    fixedUpdateTimer += GetDeltaTime();
+    if (fixedUpdateTimer >= fixedUpdateTime)
+    {
+        fixedUpdateTimer -= fixedUpdateTime;
+        FixedUpdatePlayer();
+        FixedUpdateObstacle();
+        FixedUpdateCollision();
+    }
+
+    RenderPlayer();
+    RenderObstacle();
 
     // 바닥
-    Draw(wstring(120, L' '), Coord6x5(0, 4), White, White);
+    Draw(wstring(120, L' '), { 0,28 }, White, White);
 
     // 플레이 타임 ui
     playTime += GetDeltaTime();
     wstring timerUI = to_wstring(playTime);
     timerUI.erase(timerUI.length() - 3, 3);
-    Draw(L"time : " + timerUI, Coord6x5(0, 0));
+    Draw(L"time : " + timerUI, {0, 0});
 
     // 남은 생명 ui
     wstring lifeUI;
@@ -47,7 +59,7 @@ void UpdateGame()
     if (life == 3) lifeUI = L"O O O";
     if (life == 2) lifeUI = L"O O X";
     if (life == 1) lifeUI = L"O X X";
-    Draw(lifeUI, /*Coord6x5(4, 0)*/{ (short)(WIDTH - lifeUI.length()),0 });
+    Draw(lifeUI, { (short)(WIDTH - lifeUI.length()),0 });
 
     // 게임 클리어
     if (playTime >= clearTime) SetScene(CLEAR);

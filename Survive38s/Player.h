@@ -1,7 +1,8 @@
 #pragma once
 
 void InitPlayer();
-void UpdatePlayer();
+void FixedUpdatePlayer();
+void RenderPlayer();
 void FinalPlayer();
 
 void IsCrash();

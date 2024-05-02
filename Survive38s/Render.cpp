@@ -7,8 +7,6 @@ HANDLE hConsole = {};
 HANDLE hBackBuffer[2] = {};
 bool bScreenIndex = 0;
 
-COORD m_coord6x5[5][6] = {};
-
 void InitRender()
 {
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -24,7 +22,7 @@ void InitRender()
     SetConsoleCursorInfo(hBackBuffer[1], &consoleCursor);
 
     // 콘솔 창 크기 설정
-    SMALL_RECT screenRect = { 1,1,WIDTH,HEIGHT };
+    SMALL_RECT screenRect = { 0,0,WIDTH - 1,HEIGHT - 1 };
     SetConsoleWindowInfo(hConsole, TRUE, &screenRect);
     SetConsoleWindowInfo(hBackBuffer[0], TRUE, &screenRect);
     SetConsoleWindowInfo(hBackBuffer[1], TRUE, &screenRect);
@@ -43,16 +41,6 @@ void InitRender()
 
     // 창 제목 설정
     SetConsoleTitle(L"38초 버티기");
-
-    for (int i = 0; i < 5; i++)
-    {
-        for (int j = 0; j < 6; j++)
-        {
-            short x = WIDTH / 5 * j;
-            short y = HEIGHT / 4 * i;
-            m_coord6x5[i][j] = { x,y };
-        }
-    }
 }
 
 void UpdateRender()
@@ -106,9 +94,4 @@ void Draw(wstring _wstr, COORD _pos, Color _textColor, Color _backColor)
     SetConsoleCursorPosition(hBackBuffer[bScreenIndex], pos);
     WriteConsoleW(hBackBuffer[bScreenIndex], wstr.c_str(), wstr.size(), &dw, NULL);
     return;
-}
-
-COORD Coord6x5(int x, int y)
-{
-    return m_coord6x5[y][x];
 }
