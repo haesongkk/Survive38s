@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{bccf7824-23bb-4c8d-83e1-4c9ede3949f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene">
+      <UniqueIdentifier>{441ad62f-32fc-4f92-b493-e9cc15228921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Game">
+      <UniqueIdentifier>{ae938b1a-149a-4974-af11-413fab7a890a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Game\Collision">
+      <UniqueIdentifier>{305b74f6-adf0-41a2-9240-0e5e33699e4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Game\Obstacle">
+      <UniqueIdentifier>{69665829-d63d-4853-9827-19fae894cc21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Game\Player">
+      <UniqueIdentifier>{144d1eea-2c5a-4900-b26a-7cdb712ef5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Title">
+      <UniqueIdentifier>{0aaa7d21-1d44-4363-8ced-5747f59793da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Ctrl">
+      <UniqueIdentifier>{c52c0729-61cd-4f99-ac8e-c68e65a7a5e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Credit">
+      <UniqueIdentifier>{e5cb75ad-bc10-400a-b079-8af39c11562d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Quit">
+      <UniqueIdentifier>{94598b61-e0b0-43b2-aa57-7ac3165802d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Clear">
+      <UniqueIdentifier>{d5698817-834b-402b-a34e-0a8eec70fb5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scene\Over">
+      <UniqueIdentifier>{cb5efc7f-9dfe-4a25-af5b-235157c99879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Input">
+      <UniqueIdentifier>{dafef17a-d522-4762-8187-9eecb9554bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Render">
+      <UniqueIdentifier>{3a1e0adc-13af-4c0e-a749-bd430caf6ef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Sound">
+      <UniqueIdentifier>{97b50f49-d958-46e6-a91c-d8214c8ab844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Time">
+      <UniqueIdentifier>{2b6dbc96-0b24-4022-97c5-e491d86f1a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{e0ac29a9-657c-4b90-96cc-33ac942d761d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{6cce29ac-4ba5-4cf3-a5d0-3bd0f8371403}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Framework\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Survive38s.cpp" />
+    <ClCompile Include="Time.cpp">
+      <Filter>Framework\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Framework\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Framework\Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Framework\Scene\Game\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Framework\Scene\Game\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Framework\Scene\Game\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Framework\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Ctrl.cpp">
+      <Filter>Framework\Scene\Ctrl</Filter>
+    </ClCompile>
+    <ClCompile Include="Credit.cpp">
+      <Filter>Framework\Scene\Credit</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Framework\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Quit.cpp">
+      <Filter>Framework\Scene\Quit</Filter>
+    </ClCompile>
+    <ClCompile Include="Over.cpp">
+      <Filter>Framework\Scene\Over</Filter>
+    </ClCompile>
+    <ClCompile Include="Clear.cpp">
+      <Filter>Framework\Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sound.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Framework\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h" />
+    <ClInclude Include="Time.h">
+      <Filter>Framework\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Framework\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Framework\Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Framework\Scene\Game\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Framework\Scene\Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Framework\Scene\Game\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Framework\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Ctrl.h">
+      <Filter>Framework\Scene\Ctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="Credit.h">
+      <Filter>Framework\Scene\Credit</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Framework\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Quit.h">
+      <Filter>Framework\Scene\Quit</Filter>
+    </ClInclude>
+    <ClInclude Include="Over.h">
+      <Filter>Framework\Scene\Over</Filter>
+    </ClInclude>
+    <ClInclude Include="Clear.h">
+      <Filter>Framework\Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
