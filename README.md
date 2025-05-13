@@ -15,8 +15,8 @@
 - Platform: Window 11, visual studio 2022
 
 ### 🔗 리소스 출처
-- [타이틀 BGM](https://www.youtube.com/watch?v=rbUjSQPblBs)
-- [게임 BGM](https://www.youtube.com/watch?v=yUHkIKNh7M4)
+- [게임 BGM](https://www.youtube.com/watch?v=rbUjSQPblBs)
+- [타이틀 BGM](https://www.youtube.com/watch?v=yUHkIKNh7M4)
 
 ---
 
