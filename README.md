@@ -8,7 +8,7 @@ Windows 콘솔 환경에서 제작한 2D 생존 게임입니다.
 
 ## 실행 화면
 
-[![](https://img.youtube.com/vi/rt1473CPnTo/0.jpg)](https://www.youtube.com/watch?v=rt1473CPnTo)
+[![](./screenshot.gif)](https://www.youtube.com/watch?v=rt1473CPnTo)
 
 > 위 이미지를 클릭하면 플레이 영상을 확인할 수 있습니다.
 
